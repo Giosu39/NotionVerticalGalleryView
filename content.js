@@ -1,5 +1,18 @@
 // content.js
 
+// Funzione per leggere le impostazioni dell'utente e applicarle come variabili CSS
+function applyUserSettings() {
+  chrome.storage.local.get({
+    galleryHeight: '280' // Default
+  }, function(items) {
+    // Imposta la variabile CSS sull'elemento radice (<html>) della pagina
+    document.documentElement.style.setProperty('--vertical-gallery-height', items.galleryHeight + 'px');
+  });
+}
+
+// Esegui la funzione all'avvio dello script
+applyUserSettings();
+
 // Funzione per applicare o rimuovere la modalità verticale
 function setVerticalMode(galleryElement, isEnabled) {
   galleryElement.classList.toggle('vertical-mode-enabled', isEnabled);

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Notion Vertical Gallery Images",
-  "version": "1.1",
-  "description": "Aggiunge un interruttore per attivare la modalità verticale nelle gallerie di Notion.",
+  "version": "1.2",
+  "description": "Aggiunge un interruttore per attivare la modalità verticale nelle gallerie di Notion, con altezza personalizzabile.",
   "permissions": ["storage"],
   "content_scripts": [
     {
@@ -10,5 +10,9 @@
       "css": ["styles.css"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
 }

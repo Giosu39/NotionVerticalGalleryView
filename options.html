@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Impostazioni Vertical Gallery</title>
+    <style>
+        body { font-family: sans-serif; padding: 10px 20px; width: 250px; }
+        .setting { margin-top: 10px; }
+        .slider-container { display: flex; align-items: center; gap: 10px; }
+        input[type="range"] { flex-grow: 1; }
+        #slider-value { font-weight: bold; }
+        .buttons { margin-top: 20px; display: flex; justify-content: space-between; }
+        #status { margin-top: 10px; color: green; font-style: italic; height: 1em; }
+    </style>
+</head>
+<body>
+    <h3>Impostazioni Altezza</h3>
+
+    <div class="setting">
+        <label for="height-slider">Altezza immagine:</label>
+        <div class="slider-container">
+            <input id="height-slider" type="range" min="150" max="500" step="10">
+            <span id="slider-value"></span>px
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button id="reset">Valore Predefinito</button>
+    </div>
+    
+    <div id="status"></div>
+
+    <script src="options.js"></script>
+</body>
+</html>
