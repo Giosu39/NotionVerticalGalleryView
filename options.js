@@ -1,49 +1,76 @@
 // options.js
 
-const slider = document.getElementById('height-slider');
-const valueDisplay = document.getElementById('slider-value');
-const resetButton = document.getElementById('reset');
-const status = document.getElementById('status');
-const defaultValue = '280';
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestione Slider Altezza
+    const slider = document.getElementById('height-slider');
+    const valueDisplay = document.getElementById('slider-value');
+    const resetButton = document.getElementById('reset');
+    const status = document.getElementById('status');
+    const defaultValue = '280';
 
-// Funzione per salvare il valore corrente dello slider
-function save_value() {
-  const height = slider.value;
-  chrome.storage.local.set({
-    galleryHeight: height
-  }, function() {
-    // Mostra un messaggio di conferma che scompare
-    status.textContent = 'Impostazioni salvate.';
-    setTimeout(() => { status.textContent = ''; }, 1000);
-  });
-}
+    function save_slider_value() {
+        chrome.storage.local.set({ galleryHeight: slider.value }, () => {
+            status.textContent = 'Impostazioni salvate.';
+            setTimeout(() => { status.textContent = ''; }, 1000);
+        });
+    }
+    
+    function update_display() { valueDisplay.textContent = slider.value; }
+    
+    function restore_slider() {
+        chrome.storage.local.get({ galleryHeight: defaultValue }, (items) => {
+            slider.value = items.galleryHeight;
+            update_display();
+        });
+    }
 
-// Funzione per aggiornare il valore visualizzato accanto allo slider
-function update_display() {
-  valueDisplay.textContent = slider.value;
-}
+    function reset_to_default() {
+        slider.value = defaultValue;
+        update_display();
+        save_slider_value();
+    }
 
-// Funzione per ripristinare le impostazioni salvate all'apertura
-function restore_options() {
-  chrome.storage.local.get({
-    galleryHeight: defaultValue
-  }, function(items) {
-    slider.value = items.galleryHeight;
-    update_display();
-  });
-}
+    slider.addEventListener('input', update_display);
+    slider.addEventListener('change', save_slider_value);
+    resetButton.addEventListener('click', reset_to_default);
 
-// Funzione per il pulsante di reset
-function reset_to_default() {
-    slider.value = defaultValue;
-    update_display();
-    save_value();
-}
+    // Gestione Lista Toggle Nascosti
+    const hiddenList = document.getElementById('hidden-list');
+    const emptyMessage = document.getElementById('empty-message');
 
-// Aggiungi gli event listener
-document.addEventListener('DOMContentLoaded', restore_options);
-// 'input' si attiva ogni volta che lo slider si muove
-slider.addEventListener('input', update_display);
-// 'change' si attiva quando l'utente rilascia lo slider, per salvare
-slider.addEventListener('change', save_value);
-resetButton.addEventListener('click', reset_to_default);
+    async function loadHiddenList() {
+        const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
+        hiddenList.innerHTML = ''; // Pulisci la lista
+
+        const dbIds = Object.keys(hiddenToggles);
+
+        if (dbIds.length === 0) {
+            emptyMessage.style.display = 'block';
+        } else {
+            emptyMessage.style.display = 'none';
+            dbIds.forEach(id => {
+                const title = hiddenToggles[id];
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <span title="${title}">${title}</span>
+                    <button data-db-id="${id}">Reset Toggle Visibility</button>
+                `;
+                hiddenList.appendChild(listItem);
+            });
+        }
+    }
+
+    hiddenList.addEventListener('click', async (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const dbId = e.target.dataset.dbId;
+            const { hiddenToggles } = await chrome.storage.local.get('hiddenToggles');
+            delete hiddenToggles[dbId]; // Rimuovi l'elemento dall'oggetto
+            await chrome.storage.local.set({ hiddenToggles });
+            await loadHiddenList(); // Ricarica la lista per riflettere il cambiamento
+        }
+    });
+
+    // Inizializza tutto
+    restore_slider();
+    loadHiddenList();
+});

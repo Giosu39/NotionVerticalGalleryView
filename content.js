@@ -1,93 +1,87 @@
 // content.js
 
-// Funzione per leggere le impostazioni dell'utente e applicarle come variabili CSS
 function applyUserSettings() {
-  chrome.storage.local.get({
-    galleryHeight: '280' // Default
-  }, function(items) {
-    // Imposta la variabile CSS sull'elemento radice (<html>) della pagina
+  chrome.storage.local.get({ galleryHeight: '280' }, function(items) {
     document.documentElement.style.setProperty('--vertical-gallery-height', items.galleryHeight + 'px');
   });
 }
 
-// Esegui la funzione all'avvio dello script
 applyUserSettings();
 
-// Funzione per applicare o rimuovere la modalità verticale
 function setVerticalMode(galleryElement, isEnabled) {
   galleryElement.classList.toggle('vertical-mode-enabled', isEnabled);
 }
 
-// Funzione per creare e inizializzare un interruttore per una galleria
-function createToggleForGallery(gallery) {
- 
-    
-  // Verifica la presenza di un'immagine che:
-  // 1. NON sia un'emoji (non ha la classe .notion-emoji)
-  // 2. NON sia un'icona (il suo src non contiene "/icons/")
-  const hasImages = gallery.querySelector('.notion-collection-item img:not(.notion-emoji):not([src*="/icons/"])');
-  if (!hasImages) {
-    return; 
-  }
-
-  // Evita di aggiungere un interruttore se già esiste
-  if (gallery.querySelector('.vertical-mode-toggle')) {
-    return;
-  }
-
+// Funzione principale, ora asincrona per gestire l'attesa della memoria
+async function createToggleForGallery(gallery) {
   const databaseContainer = gallery.querySelector('[data-block-id]');
   if (!databaseContainer) return;
-  
   const dbId = databaseContainer.dataset.blockId;
 
-  // Crea gli elementi HTML per l'interruttore
+  // 1. CONTROLLO INIZIALE: Verifica se questo toggle deve essere nascosto
+  const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
+  if (hiddenToggles[dbId]) {
+    return; // Se è nella lista dei nascosti, non creare il toggle
+  }
+
+  const hasImages = gallery.querySelector('.notion-collection-item img:not(.notion-emoji):not([src*="/icons/"])');
+  if (!hasImages) return;
+
+  if (gallery.querySelector('.vertical-mode-toggle')) return;
+
+  // Crea gli elementi base del toggle
   const label = document.createElement('label');
   label.className = 'vertical-mode-toggle';
   label.innerHTML = `
-    Vertical Mode
+    <span class="toggle-text">Vertical Mode</span>
     <span class="switch">
       <input type="checkbox">
       <span class="slider"></span>
     </span>
   `;
+  
+  // 2. CREA E AGGIUNGI IL PULSANTE "NASCONDI"
+  const hideButton = document.createElement('button');
+  hideButton.className = 'hide-toggle-btn';
+  hideButton.textContent = '❌ Hide toggle';
+  hideButton.title = 'Hide toggle. You can restore its visibility from the extension settings.';
+  label.appendChild(hideButton);
 
   const input = label.querySelector('input');
-
-  // Aggiunge l'interruttore all'inizio della galleria
   gallery.prepend(label);
 
-  // Carica lo stato salvato per questo database
-  chrome.storage.local.get([dbId], (result) => {
-    const isEnabled = result[dbId] || false;
-    input.checked = isEnabled;
-    setVerticalMode(gallery, isEnabled);
+  // 3. AGGIUNGI LA LOGICA AL PULSANTE "NASCONDI"
+  hideButton.addEventListener('click', async (e) => {
+    e.preventDefault(); // Evita di attivare il toggle
+    e.stopPropagation();
+
+    // Trova il titolo del database (spesso in un header sopra la galleria)
+    const header = gallery.closest('.notion-page-content')?.querySelector('.notion-header-block [contenteditable="true"]');
+    const dbTitle = header ? header.textContent : `Database ID: (${dbId.substring(0, 6)}...)`;
+    
+    const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
+    hiddenToggles[dbId] = dbTitle; // Salva ID e titolo
+    await chrome.storage.local.set({ hiddenToggles });
+    
+    label.style.display = 'none'; // Nascondi il toggle immediatamente
   });
 
-  // Aggiunge l'evento per salvare la preferenza quando si clicca
+  // Logica esistente per caricare e salvare lo stato del toggle
+  const { [dbId]: isEnabled = false } = await chrome.storage.local.get(dbId);
+  input.checked = isEnabled;
+  setVerticalMode(gallery, isEnabled);
+
   input.addEventListener('change', (event) => {
-    const isEnabled = event.target.checked;
-    chrome.storage.local.set({ [dbId]: isEnabled });
-    setVerticalMode(gallery, isEnabled);
+    const enabled = event.target.checked;
+    chrome.storage.local.set({ [dbId]: enabled });
+    setVerticalMode(gallery, enabled);
   });
 }
 
-// Funzione per trovare tutte le gallerie sulla pagina e aggiungere gli interruttori
 function findAndProcessGalleries() {
-  const galleries = document.querySelectorAll('.notion-gallery-view');
-  galleries.forEach(createToggleForGallery);
+    document.querySelectorAll('.notion-gallery-view').forEach(createToggleForGallery);
 }
 
-// Notion carica i contenuti dinamicamente, quindi dobbiamo osservare i cambiamenti
-// nel DOM per trovare nuove gallerie quando vengono caricate.
-const observer = new MutationObserver((mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.addedNodes.length > 0) {
-      findAndProcessGalleries();
-      break; 
-    }
-  }
-});
-
-// Avvia l'osservatore e la prima scansione della pagina
+const observer = new MutationObserver(() => findAndProcessGalleries());
 observer.observe(document.body, { childList: true, subtree: true });
 findAndProcessGalleries();

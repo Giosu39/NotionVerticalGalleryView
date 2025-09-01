@@ -88,3 +88,40 @@
 .vertical-mode-toggle input:checked + .slider:before {
   transform: translateX(14px);
 }
+
+/* Stile per il pulsante "nascondi" */
+.hide-toggle-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.4;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 1;
+  padding: 5px 5px;
+  border-radius: 4px;
+}
+.hide-toggle-btn:hover {
+  opacity: 0.8;
+  background-color: rgba(128, 128, 128, 0.2);
+}
+/* --- Stili STRUTTURALI per l'interruttore (Toggle Switch) --- */
+/* Questi stili non cambiano tra i temi */
+.vertical-mode-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 8px 4px 12px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  
+  /* --- MODIFICHE QUI --- */
+  justify-content: flex-start; /* Allinea gli elementi all'inizio */
+  gap: 3px; /* Spazio tra gli elementi */
+  /* --- FINE MODIFICHE --- */
+}
+
+.vertical-mode-toggle .toggle-text {
+  flex-shrink: 0; /* Impedisce al testo di rimpicciolirsi */
+}
