@@ -7,6 +7,16 @@ function setVerticalMode(galleryElement, isEnabled) {
 
 // Funzione per creare e inizializzare un interruttore per una galleria
 function createToggleForGallery(gallery) {
+ 
+    
+  // Verifica la presenza di un'immagine che:
+  // 1. NON sia un'emoji (non ha la classe .notion-emoji)
+  // 2. NON sia un'icona (il suo src non contiene "/icons/")
+  const hasImages = gallery.querySelector('.notion-collection-item img:not(.notion-emoji):not([src*="/icons/"])');
+  if (!hasImages) {
+    return; 
+  }
+
   // Evita di aggiungere un interruttore se già esiste
   if (gallery.querySelector('.vertical-mode-toggle')) {
     return;
