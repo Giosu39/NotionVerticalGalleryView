@@ -1,21 +1,68 @@
 /* styles.css */
 
-/* Target the main container that holds the image.
-  We override the inline style 'height: 100px' set by Notion.
-  !important is necessary to ensure our style takes precedence.
-*/
-div.notion-gallery-view div.notion-collection-item a > div:first-child > div:first-child > div:first-child {
-  height: 280px !important; /* You can adjust this value to your liking */
+/* Applica la modalità verticale SOLO se il contenitore ha la classe .vertical-mode-enabled */
+.notion-gallery-view.vertical-mode-enabled .notion-collection-item a > div:first-child > div:first-child > div:first-child {
+  height: 280px !important;
 }
 
-/*
-  Target the image element itself inside the container.
-  We change its height to fill the new, taller container.
-*/
-div.notion-gallery-view div.notion-collection-item a img {
+.notion-gallery-view.vertical-mode-enabled .notion-collection-item a img {
   height: 100% !important;
-  /* Optional: Adjust the image's focus. 'top' is often best for book covers.
-    Other options include 'center', 'bottom', or percentages like '25% 50%'.
-  */
-  object-position: top !important; 
+  object-position: top !important;
+}
+
+/* --- Stili per l'interruttore (Toggle Switch) --- */
+.vertical-mode-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 8px 4px 12px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.vertical-mode-toggle .switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  margin-left: 8px;
+}
+
+.vertical-mode-toggle .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.vertical-mode-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: .4s;
+  border-radius: 20px;
+}
+
+.vertical-mode-toggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.vertical-mode-toggle input:checked + .slider {
+  background-color: #529e72; /* Colore verde quando attivo */
+}
+
+.vertical-mode-toggle input:checked + .slider:before {
+  transform: translateX(14px);
 }
