@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function save_slider_value() {
         chrome.storage.local.set({ galleryHeight: slider.value }, () => {
-            status.textContent = 'Impostazioni salvate.';
+            status.textContent = chrome.i18n.getMessage('settingsSaved');
             setTimeout(() => { status.textContent = ''; }, 1000);
         });
     }
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gestione Lista Toggle Nascosti
     const hiddenList = document.getElementById('hidden-list');
     const emptyMessage = document.getElementById('empty-message');
+    const resetButtonText = chrome.i18n.getMessage('resetToggleVisibilityButton');
 
     async function loadHiddenList() {
         const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
                     <span title="${title}">${title}</span>
-                    <button data-db-id="${id}">Reset Toggle Visibility</button>
+                    <button data-db-id="${id}">${resetButtonText}</button>
                 `;
                 hiddenList.appendChild(listItem);
             });
@@ -64,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.tagName === 'BUTTON') {
             const dbId = e.target.dataset.dbId;
             const { hiddenToggles } = await chrome.storage.local.get('hiddenToggles');
-            delete hiddenToggles[dbId]; // Rimuovi l'elemento dall'oggetto
+            delete hiddenToggles[dbId];
             await chrome.storage.local.set({ hiddenToggles });
-            await loadHiddenList(); // Ricarica la lista per riflettere il cambiamento
+            await loadHiddenList();
         }
     });
 

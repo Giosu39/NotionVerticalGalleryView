@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Notion Vertical Gallery",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "version": "1.0",
-  "description": "Adds a toggle to activate vertical mode in Notion galleries, with customizable height.",
   "permissions": [
-        "storage",
-        "declarativeContent"
-    ],
+    "storage",
+    "declarativeContent"
+  ],
   "action": {
     "default_icon": {
       "16": "images/icon16.png",
@@ -21,15 +22,17 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.notion.so/*"],
-      "css": ["styles.css"],
-      "js": ["content.js"]
+      "matches": [
+        "*://*.notion.so/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ],
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
   "icons": {
     "16": "images/icon16.png",
     "24": "images/icon24.png",

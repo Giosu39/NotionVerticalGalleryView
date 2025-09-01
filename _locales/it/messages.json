@@ -1,0 +1,40 @@
+{
+  "appName": {
+    "message": "Notion Vertical Gallery - BETA",
+    "description": "Il nome dell'applicazione"
+  },
+  "appDesc": {
+    "message": "Aggiunge un toggle per attivare la modalità verticale nelle gallerie di Notion, con altezza delle immagini personalizzabile. THIS EXTENSION IS FOR BETA TESTING.",
+    "description": "La descrizione dell'applicazione"
+  },
+  "settingsTitle": {
+    "message": "🎨 Impostazioni di Notion Vertical Gallery"
+  },
+  "imageHeightLabel": {
+    "message": "Altezza immagine"
+  },
+  "resetHeightButton": {
+    "message": "Ripristina altezza predefinita"
+  },
+  "hiddenTogglesLabel": {
+    "message": "Toggle nascosti"
+  },
+  "noTogglesHidden": {
+    "message": "Nessun toggle è stato nascosto."
+  },
+  "settingsSaved": {
+    "message": "Impostazioni salvate."
+  },
+  "resetToggleVisibilityButton": {
+    "message": "Ripristina Visibilità"
+  },
+  "verticalMode": {
+    "message": "Modalità Verticale"
+  },
+  "hideToggleButton": {
+    "message": "❌ Nascondi salvando lo stato attuale"
+  },
+  "hideToggleTitle": {
+    "message": "Nascondi il toggle. Puoi ripristinarne la visibilità dalle impostazioni dell'estensione."
+  }
+}

@@ -1,0 +1,131 @@
+        :root {
+            --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+            --text-color: rgb(55, 53, 47);
+            --subtle-text: rgba(55, 53, 47, 0.7);
+            --bg-color: #F7F7F5;
+            --border-color: rgba(55, 53, 47, 0.1);
+            --button-bg: white;
+            --button-hover-bg: #EFEFEE;
+            /* --- MODIFICA 1: Slider più visibile --- */
+            --slider-track: rgba(55, 53, 47, 0.15); 
+            --slider-thumb: white;
+            --accent-color: #529e72;
+        }
+        body {
+            font-family: var(--notion-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            width: 320px;
+        }
+        .container {
+            padding: 16px;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        header h2 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .setting-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        #slider-value {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        button {
+            background: var(--button-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+            white-space: nowrap;
+        }
+        button:hover {
+            background-color: var(--button-hover-bg);
+        }
+        #status {
+            font-size: 12px;
+            color: var(--accent-color);
+            height: 1em;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        /* --- MODIFICA 2: Layout robusto per la lista --- */
+        #hidden-list {
+            padding: 0;
+            margin: 0;
+        }
+        #hidden-list li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 4px;
+            font-size: 13px;
+            gap: 12px; /* Aggiunge spazio tra testo e pulsante */
+            border-bottom: 1px solid var(--border-color);
+        }
+        #hidden-list li:last-child {
+            border-bottom: none;
+        }
+        #hidden-list li span {
+            color: var(--subtle-text);
+            /* Regole per far adattare il testo allo spazio */
+            flex-grow: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #hidden-list li button {
+            flex-shrink: 0; /* Impedisce al pulsante di rimpicciolirsi */
+        }
+
+        /* Stile personalizzato per lo slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--slider-track);
+            border-radius: 3px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--slider-thumb);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid rgba(55, 53, 47, 0.2); /* Bordo più marcato */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }

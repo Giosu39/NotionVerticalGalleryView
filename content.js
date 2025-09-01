@@ -1,5 +1,13 @@
 // content.js
 
+const SELECTORS = {
+  galleryView: '.notion-gallery-view',
+  galleryItem: '.notion-collection-item',
+  databaseContainer: '[data-block-id]',
+  pageHeader: '.notion-page-content .notion-header-block [contenteditable="true"]',
+  image: 'img:not(.notion-emoji):not([src*="/icons/"])'
+};
+
 function applyUserSettings() {
   chrome.storage.local.get({ galleryHeight: '280' }, function(items) {
     document.documentElement.style.setProperty('--vertical-gallery-height', items.galleryHeight + 'px');
@@ -12,57 +20,43 @@ function setVerticalMode(galleryElement, isEnabled) {
 }
 
 async function processGallery(gallery) {
-  // --- NUOVO CONTROLLO DI TEMPISTICA ---
-  // Se la galleria non contiene ancora le "card", è troppo presto.
-  // La funzione uscirà e riproverà al prossimo aggiornamento del DOM.
-  if (!gallery.querySelector('.notion-collection-item')) {
-    return;
-  }
+    // ... (codice invariato)
+    if (!gallery.querySelector(SELECTORS.galleryItem)) return;
+    if (gallery.dataset.verticalGalleryProcessed) return;
+    gallery.dataset.verticalGalleryProcessed = 'true';
+    const databaseContainer = gallery.querySelector(SELECTORS.databaseContainer);
+    if (!databaseContainer) return;
+    const dbId = databaseContainer.dataset.blockId;
+    const { [dbId]: isEnabled = false } = await chrome.storage.local.get(dbId);
+    setVerticalMode(gallery, isEnabled);
+    const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
+    if (hiddenToggles[dbId]) return;
+    const hasImages = gallery.querySelector(SELECTORS.image);
+    if (!hasImages) return;
+    
+    // --- MODIFICHE QUI ---
+    const label = document.createElement('label');
+    label.className = 'vertical-mode-toggle';
+    const verticalModeText = chrome.i18n.getMessage('verticalMode');
+    label.innerHTML = `
+        <span class="toggle-text">${verticalModeText}</span>
+        <span class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </span>
+    `;
+    
+    const hideButton = document.createElement('button');
+    hideButton.className = 'hide-toggle-btn';
+    hideButton.textContent = chrome.i18n.getMessage('hideToggleButton');
+    hideButton.title = chrome.i18n.getMessage('hideToggleTitle');
+    label.appendChild(hideButton);
 
-  // Se siamo qui, le card sono caricate. Ora possiamo procedere.
-  if (gallery.dataset.verticalGalleryProcessed) return;
-  gallery.dataset.verticalGalleryProcessed = 'true';
-  
-  const databaseContainer = gallery.querySelector('[data-block-id]');
-  if (!databaseContainer) return;
-  const dbId = databaseContainer.dataset.blockId;
-
-  // 1. Applica sempre lo stile
-  const { [dbId]: isEnabled = false } = await chrome.storage.local.get(dbId);
-  setVerticalMode(gallery, isEnabled);
-
-  // 2. Decide se mostrare l'interfaccia
-  const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
-  if (hiddenToggles[dbId]) {
-    return;
-  }
-
-  // 3. Crea l'interfaccia
-  const hasImages = gallery.querySelector('.notion-collection-item img:not(.notion-emoji):not([src*="/icons/"])');
-  if (!hasImages) return;
-
-  const label = document.createElement('label');
-  label.className = 'vertical-mode-toggle';
-  label.innerHTML = `
-    <span class="toggle-text">Vertical Mode</span>
-    <span class="switch">
-      <input type="checkbox">
-      <span class="slider"></span>
-    </span>
-  `;
-  
-  const hideButton = document.createElement('button');
-  hideButton.className = 'hide-toggle-btn';
-  hideButton.textContent = '❌ Hide toggle saving current state';
-  hideButton.title = 'Hide toggle. You can restore its visibility from the extension settings.';
-  label.appendChild(hideButton);
-
-  const input = label.querySelector('input');
-  gallery.prepend(label);
-  
-  input.checked = isEnabled;
-
-  hideButton.addEventListener('click', async (e) => {
+    const input = label.querySelector('input');
+    gallery.prepend(label);
+    
+    input.checked = isEnabled;
+    hideButton.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
     const header = gallery.closest('.notion-page-content')?.querySelector('.notion-header-block [contenteditable="true"]');
@@ -81,9 +75,28 @@ async function processGallery(gallery) {
 }
 
 function findAndProcessGalleries() {
-  document.querySelectorAll('.notion-gallery-view').forEach(processGallery);
+  const galleries = document.querySelectorAll(SELECTORS.galleryView);
+  galleries.forEach(processGallery);
+  // Restituisce il numero di gallerie trovate, ci servirà per la nuova logica
+  return galleries.length;
 }
 
-const observer = new MutationObserver(() => findAndProcessGalleries());
+// --- LOGICA DI ESECUZIONE ---
+
+// 1. L'Observer gestisce i cambiamenti DOPO il caricamento iniziale (es. cambio pagina)
+const observer = new MutationObserver(findAndProcessGalleries);
 observer.observe(document.body, { childList: true, subtree: true });
-findAndProcessGalleries();
+
+// 2. Logica "paziente" per il caricamento iniziale della pagina
+let attempts = 0;
+const maxAttempts = 20; // Prova per 10 secondi (20 * 500ms)
+const initialLoadChecker = setInterval(() => {
+  attempts++;
+  const galleriesFound = findAndProcessGalleries();
+  
+  // Se troviamo almeno una galleria OPPURE se abbiamo provato abbastanza volte,
+  // smettiamo di controllare per non sprecare risorse.
+  if (galleriesFound > 0 || attempts >= maxAttempts) {
+    clearInterval(initialLoadChecker);
+  }
+}, 500);
