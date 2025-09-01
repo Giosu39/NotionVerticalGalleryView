@@ -1,0 +1,21 @@
+/* styles.css */
+
+/* Target the main container that holds the image.
+  We override the inline style 'height: 100px' set by Notion.
+  !important is necessary to ensure our style takes precedence.
+*/
+div.notion-gallery-view div.notion-collection-item a > div:first-child > div:first-child > div:first-child {
+  height: 280px !important; /* You can adjust this value to your liking */
+}
+
+/*
+  Target the image element itself inside the container.
+  We change its height to fill the new, taller container.
+*/
+div.notion-gallery-view div.notion-collection-item a img {
+  height: 100% !important;
+  /* Optional: Adjust the image's focus. 'top' is often best for book covers.
+    Other options include 'center', 'bottom', or percentages like '25% 50%'.
+  */
+  object-position: top !important; 
+}

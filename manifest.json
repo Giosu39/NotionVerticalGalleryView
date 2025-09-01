@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Notion Vertical Gallery Images",
+  "version": "1.0",
+  "description": "Changes Notion gallery cover images to a vertical orientation.",
+  "content_scripts": [
+    {
+      "matches": ["*://*.notion.so/*"],
+      "css": ["styles.css"]
+    }
+  ]
+}
