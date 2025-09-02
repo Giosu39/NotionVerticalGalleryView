@@ -1,5 +1,3 @@
-// content.js
-
 const SELECTORS = {
   galleryView: '.notion-gallery-view',
   galleryItem: '.notion-collection-item',
@@ -20,8 +18,9 @@ function setVerticalMode(galleryElement, isEnabled) {
 }
 
 async function processGallery(gallery) {
-    // ... (codice invariato)
+
     if (!gallery.querySelector(SELECTORS.galleryItem)) return;
+
     if (gallery.dataset.verticalGalleryProcessed) return;
     gallery.dataset.verticalGalleryProcessed = 'true';
     const databaseContainer = gallery.querySelector(SELECTORS.databaseContainer);
@@ -29,12 +28,14 @@ async function processGallery(gallery) {
     const dbId = databaseContainer.dataset.blockId;
     const { [dbId]: isEnabled = false } = await chrome.storage.local.get(dbId);
     setVerticalMode(gallery, isEnabled);
+
+    // If the toggle has been hidden by the user, then don't show the toggle for this DB
     const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
     if (hiddenToggles[dbId]) return;
     const hasImages = gallery.querySelector(SELECTORS.image);
     if (!hasImages) return;
     
-    // --- MODIFICHE QUI ---
+    /* START - Add toggle to current */
     const label = document.createElement('label');
     label.className = 'vertical-mode-toggle';
     const verticalModeText = chrome.i18n.getMessage('verticalMode');
@@ -56,17 +57,21 @@ async function processGallery(gallery) {
     gallery.prepend(label);
     
     input.checked = isEnabled;
-    hideButton.addEventListener('click', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const header = gallery.closest('.notion-page-content')?.querySelector('.notion-header-block [contenteditable="true"]');
-    const dbTitle = header ? header.textContent : `Database ID: (${dbId.substring(0, 6)}...)`;
-    const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
-    hiddenToggles[dbId] = dbTitle;
-    await chrome.storage.local.set({ hiddenToggles });
-    label.style.display = 'none';
-  });
 
+    // Listen for clicks on "Hide" button
+    hideButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const header = gallery.closest('.notion-page-content')?.querySelector('.notion-header-block [contenteditable="true"]');
+      const dbTitle = header ? header.textContent : `Database ID: (${dbId.substring(0, 6)}...)`;
+      const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
+      hiddenToggles[dbId] = dbTitle;
+      await chrome.storage.local.set({ hiddenToggles });
+      label.style.display = 'none';
+    });
+  /* END - Add toggle */
+
+  // Listen for toggle value changes
   input.addEventListener('change', (event) => {
     const enabled = event.target.checked;
     chrome.storage.local.set({ [dbId]: enabled });
