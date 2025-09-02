@@ -32,7 +32,7 @@
     "message": "Vertical Mode"
   },
   "hideToggleButton": {
-    "message": "❌ Hide toggle saving current state"
+    "message": "💾 Save and hide"
   },
   "hideToggleTitle": {
     "message": "Hide toggle. You can restore its visibility from the extension settings."

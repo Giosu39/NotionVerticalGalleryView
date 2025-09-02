@@ -32,7 +32,7 @@
     "message": "Modalità Verticale"
   },
   "hideToggleButton": {
-    "message": "❌ Nascondi salvando lo stato attuale"
+    "message": "💾 Salva e nascondi"
   },
   "hideToggleTitle": {
     "message": "Nascondi il toggle. Puoi ripristinarne la visibilità dalle impostazioni dell'estensione."
