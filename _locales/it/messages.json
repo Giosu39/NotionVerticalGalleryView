@@ -4,7 +4,7 @@
     "description": "Il nome dell'applicazione"
   },
   "appDesc": {
-    "message": "Aggiunge un toggle per attivare la modalità verticale nelle gallerie di Notion, con altezza delle immagini personalizzabile. THIS EXTENSION IS FOR BETA TESTING.",
+    "message": "THIS EXTENSION IS FOR BETA TESTING.",
     "description": "La descrizione dell'applicazione"
   },
   "settingsTitle": {
