@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="optionsTitle">Come usare Vertical Gallery for Notion</title>
     <link rel="stylesheet" href="options.css">
 </head>
+
 <body>
     <div class="container">
+        <!-- Sezione Supporto Aggiunta -->
+        <div class="support-section">
+            <p>
+                <span data-i18n="supportTextFirstPart"></span>
+                <a href="#" id="review-link" class="review-link" target="_blank" rel="noopener noreferrer"
+                    data-i18n="reviewLinkText"></a>
+                <span data-i18n="supportTextFinalPart"></span>
+            </p>
+        </div>
         <header>
             <img src="images/icon.png" alt="Extension Icon" class="header-icon">
             <h1 data-i18n="appName">Vertical Gallery for Notion</h1>
@@ -19,10 +30,14 @@
                 <div class="step-text">
                     <h2 data-i18n="optionsStep1Title">1. Trova il controllo "Vertical Mode"</h2>
                     <p data-i18n="optionsStep1Desc">
-                        Una volta installata l'estensione, naviga su una pagina di Notion che contiene una galleria con immagini. Sopra la galleria, vedrai apparire un nuovo interruttore con la scritta "Vertical Mode".
+                        Una volta installata l'estensione, naviga su una pagina di Notion che contiene una galleria con
+                        immagini. Sopra la galleria, vedrai apparire un nuovo interruttore con la scritta "Vertical
+                        Mode".
                     </p>
                     <p class="tip">
-                        <strong data-i18n="optionsNote">Nota:</strong> <span data-i18n="optionsStep1Tip">Il controllo appare solo se la galleria contiene almeno un'immagine. Potrebbe essere necessario un refresh della pagina.</span>
+                        <strong data-i18n="optionsNote">Nota:</strong> <span data-i18n="optionsStep1Tip">Il controllo
+                            appare solo se la galleria contiene almeno un'immagine. Potrebbe essere necessario un
+                            refresh della pagina.</span>
                     </p>
                 </div>
                 <div class="step-image-placeholder">
@@ -34,10 +49,12 @@
                 <div class="step-text">
                     <h2 data-i18n="optionsStep2Title">2. Attiva la modalità e regola l'altezza</h2>
                     <p data-i18n="optionsStep2Desc1">
-                        Clicca sull'interruttore per attivare la modalità verticale. Le immagini della galleria si adatteranno per mostrarsi in tutta la loro altezza.
+                        Clicca sull'interruttore per attivare la modalità verticale. Le immagini della galleria si
+                        adatteranno per mostrarsi in tutta la loro altezza.
                     </p>
                     <p data-i18n="optionsStep2Desc2">
-                        Una volta attivata la modalità, appariranno i pulsanti <strong>+</strong> e <strong>-</strong> per permetterti di regolare finemente l'altezza delle immagini a tuo piacimento.
+                        Una volta attivata la modalità, appariranno i pulsanti <strong>+</strong> e <strong>-</strong>
+                        per permetterti di regolare finemente l'altezza delle immagini a tuo piacimento.
                     </p>
                 </div>
                 <div class="step-image-placeholder">
@@ -49,16 +66,20 @@
                 <div class="step-text">
                     <h2 data-i18n="optionsStep3Title">3. Nascondi il controllo (Opzionale)</h2>
                     <p>
-                        <span data-i18n="optionsStep3Desc">Se desideri un'interfaccia più pulita, puoi nascondere il controllo "Vertical Mode" per una specifica galleria cliccando sul pulsante</span>
+                        <span data-i18n="optionsStep3Desc">Se desideri un'interfaccia più pulita, puoi nascondere il
+                            controllo "Vertical Mode" per una specifica galleria cliccando sul pulsante</span>
                         <strong><span data-i18n="optionsHideButtonText">Salva e nascondi</span></strong>.
                     </p>
                     <p class="tip">
                         <strong data-i18n="optionsNote">Nota:</strong>
-                        <span data-i18n="optionsStep3TipPart1">Per ripristinare la visibilità del toggle, devi aprire il popup dell'estensione.</span><br>
-                        <span data-i18n="optionsStep3TipPart2">Puoi aprire il popup premendo sull'icona delle estensioni presente in alto a destra nella finestra del browser, e selezionando "Vertical Gallery for Notion".</span>
+                        <span data-i18n="optionsStep3TipPart1">Per ripristinare la visibilità del toggle, devi aprire il
+                            popup dell'estensione.</span><br>
+                        <span data-i18n="optionsStep3TipPart2">Puoi aprire il popup premendo sull'icona delle estensioni
+                            presente in alto a destra nella finestra del browser, e selezionando "Vertical Gallery for
+                            Notion".</span>
                     </p>
                 </div>
-                 <div class="step-image-placeholder">
+                <div class="step-image-placeholder">
                     <img src="images/tutorial-step-3-image.jpg" alt="Tutorial Step 3">
                 </div>
             </section>
@@ -70,5 +91,7 @@
         </footer>
     </div>
     <script src="i18n.js"></script>
+    <script src="options.js"></script>
 </body>
+
 </html>

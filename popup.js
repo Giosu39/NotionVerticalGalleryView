@@ -95,13 +95,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // MODIFICA: Aggiunto event listener per il link al tutorial
     const tutorialLink = document.getElementById('open-tutorial');
     if (tutorialLink) {
         tutorialLink.addEventListener('click', (e) => {
             e.preventDefault();
-            // Apre la pagina delle opzioni definita in manifest.json
             chrome.runtime.openOptionsPage();
+        });
+    }
+
+    // NUOVA LOGICA: Gestione link recensione
+    const reviewLink = document.getElementById('review-link');
+    if (reviewLink) {
+        reviewLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Costruisce l'URL per la pagina delle recensioni dinamicamente
+            const reviewUrl = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}/reviews`;
+            chrome.tabs.create({ url: reviewUrl });
         });
     }
 

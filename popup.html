@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Vertical Gallery for Notion Settings</title>
     <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
     <div class="container">
+        <div class="support-section">
+            <p>
+                <span data-i18n="supportTextFirstPart"></span>
+                <a href="#" id="review-link" class="review-link" target="_blank" rel="noopener noreferrer"
+                    data-i18n="reviewLinkText"></a>
+                <span data-i18n="supportTextFinalPart"></span>
+            </p>
+        </div>
         <header>
             <img src="images/icon.png" alt="Extension Icon" class="header-icon">
             <h2 data-i18n="settingsTitle"></h2>
@@ -32,7 +42,6 @@
             </div>
         </main>
 
-        <!-- MODIFICA: Aggiunto un footer per il link al tutorial -->
         <footer>
             <a href="#" id="open-tutorial" class="footer-link" data-i18n="openTutorialLink">Tutorial</a>
         </footer>
@@ -40,4 +49,5 @@
     <script src="i18n.js"></script>
     <script src="popup.js"></script>
 </body>
+
 </html>

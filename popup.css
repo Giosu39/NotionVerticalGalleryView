@@ -214,7 +214,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transform: scale(1.1);
 }
 
-/* MODIFICA: Nuovi stili per il footer e il link al tutorial */
 footer {
     padding-top: 12px;
     margin-top: 12px;
@@ -231,5 +230,25 @@ footer {
 
 .footer-link:hover {
     color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* NUOVI STILI per la sezione di supporto */
+.support-section {
+    padding-top: 4px;
+    margin-bottom: 38px;
+}
+.support-section p {
+    margin: 0;
+    font-size: 13px;
+    text-align: center;
+    color: var(--subtle-text);
+}
+.review-link {
+    color: var(--accent-color);
+    text-decoration: underline;
+    font-weight: 500;
+}
+.review-link:hover {
     text-decoration: underline;
 }

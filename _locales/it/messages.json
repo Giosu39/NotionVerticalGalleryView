@@ -96,5 +96,14 @@
   "optionsFooter": {
     "message": "Grazie per aver installato Vertical Gallery for Notion!",
     "description": "The footer text on the options page."
+  },
+  "supportTextFirstPart": {
+    "message": "Ti è utile? Una"
+  },
+  "reviewLinkText": {
+    "message": "recensione"
+  },
+  "supportTextFinalPart": {
+    "message": " mi farebbe felice! :)"
   }
 }
