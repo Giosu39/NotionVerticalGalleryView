@@ -3,10 +3,14 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "1.1",
+  "version": "1.2",
   "permissions": [
     "storage",
-    "declarativeContent"
+    "declarativeContent",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.notion.so/*"
   ],
   "action": {
     "default_icon": {
