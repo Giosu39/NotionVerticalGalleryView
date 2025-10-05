@@ -105,14 +105,19 @@
 }
 
 .height-btn {
+  /* --- MODIFICHE PER IL CENTRAMENTO (Metodo Grid) --- */
+  display: grid;
+  place-items: center;
+  align-content: baseline;
+  line-height: 1; /* Normalizza l'altezza della linea */
+
+  /* Proprietà originali */
   background-color: transparent;
   border: 1px solid;
   border-radius: 50%;
   width: 22px;
   height: 22px;
-  font-size: 16px;
-  line-height: 20px;
-  text-align: center;
+  font-size: 18px; /* Leggermente più grande per una migliore resa */
   cursor: pointer;
   padding: 0;
   transition: background-color 0.1s ease-in-out;
@@ -150,3 +155,4 @@
 .notion-dark-theme .height-display {
   color: rgba(255, 255, 255, 0.7);
 }
+

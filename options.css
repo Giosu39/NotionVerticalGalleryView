@@ -92,7 +92,7 @@ main {
     padding: 12px;
     background-color: var(--bg-color);
     border-radius: 6px;
-    color: var(--text-color);
+    color: var(--subtle-text);
 }
 
 

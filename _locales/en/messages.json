@@ -4,7 +4,7 @@
     "description": "The name of the application"
   },
   "appDesc": {
-    "message": "THIS EXTENSION IS FOR BETA TESTING.",
+    "message": "An external tool that makes it possible to display images vertically in Notion's \"Gallery View\". THIS EXTENSION IS FOR BETA TESTING.",
     "description": "The description of the application"
   },
   "settingsTitle": {
@@ -72,6 +72,9 @@
   "optionsStep2Desc2": {
     "message": "Once the mode is activated, + and - buttons will appear, allowing you to fine-tune the height of the images to your liking.",
     "description": "Second paragraph of the description for step 2."
+  },
+  "optionsStep2Tip": {
+    "message": "To achieve the best possible appearance, try playing around with the \"Card size\" and \"Fit image\" properties in Notion's \"Gallery View\""
   },
   "optionsStep3Title": {
     "message": "3. Hide the control (Optional)",
