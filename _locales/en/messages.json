@@ -36,5 +36,65 @@
   },
   "hideToggleTitle": {
     "message": "Hide toggle. You can restore its visibility from the extension settings."
+  },
+  "optionsTitle": {
+    "message": "How to use Vertical Gallery for Notion",
+    "description": "The title of the options page."
+  },
+  "optionsSubtitle": {
+    "message": "Quick guide to using the extension",
+    "description": "The subtitle on the options page."
+  },
+  "optionsStep1Title": {
+    "message": "1. Find the \"Vertical Mode\" control",
+    "description": "Title for the first step in the guide."
+  },
+  "optionsStep1Desc": {
+    "message": "Once the extension is installed, navigate to a Notion page containing a gallery with images. Above the gallery, you will see a new switch labeled \"Vertical Mode\".",
+    "description": "Description for the first step."
+  },
+  "optionsNote": {
+    "message": "Note:",
+    "description": "The word 'Note:' for tips."
+  },
+  "optionsStep1Tip": {
+    "message": "The control only appears if the gallery contains at least one image. A page refresh might be necessary.",
+    "description": "The content of the tip for step 1."
+  },
+  "optionsStep2Title": {
+    "message": "2. Activate the mode and adjust the height",
+    "description": "Title for the second step in the guide."
+  },
+  "optionsStep2Desc1": {
+    "message": "Click the switch to activate vertical mode. The gallery images will adjust to show their full height.",
+    "description": "First paragraph of the description for step 2."
+  },
+  "optionsStep2Desc2": {
+    "message": "Once the mode is activated, + and - buttons will appear, allowing you to fine-tune the height of the images to your liking.",
+    "description": "Second paragraph of the description for step 2."
+  },
+  "optionsStep3Title": {
+    "message": "3. Hide the control (Optional)",
+    "description": "Title for the third step in the guide."
+  },
+  "optionsStep3Desc": {
+    "message": "If you want a cleaner interface, you can hide the \"Vertical Mode\" control for a specific gallery by clicking the",
+    "description": "Description for the third step, part before the button name."
+  },
+  "optionsHideButtonText": {
+    "message": "Save and hide",
+    "description": "The text for the 'Save and hide' button mentioned in the guide."
+  },
+  "optionsStep3TipPart1": {
+    "message": "To restore the toggle's visibility, you need to open the extension's popup.",
+    "description": "First part of the tip for step 3."
+  },
+  "optionsStep3TipPart2": {
+    "message": "You can open the popup by clicking the extensions icon in the top right of your browser window, and selecting \"Vertical Gallery for Notion\".",
+    "description": "Second part of the tip for step 3."
+  },
+  "optionsFooter": {
+    "message": "Thank you for installing Vertical Gallery for Notion!",
+    "description": "The footer text on the options page."
   }
 }

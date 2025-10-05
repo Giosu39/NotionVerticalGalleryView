@@ -2,5 +2,99 @@
   "appName": {
     "message": "Vertical Gallery for Notion - BETA",
     "description": "Il nome dell'applicazione"
+  },
+  "appDesc": {
+    "message": "THIS EXTENSION IS FOR BETA TESTING.",
+    "description": "La descrizione dell'applicazione"
+  },
+  "settingsTitle": {
+    "message": "Vertical Gallery for Notion"
+  },
+  "imageHeightLabel": {
+    "message": "Altezza immagine"
+  },
+  "resetHeightButton": {
+    "message": "Ripristina altezza predefinita"
+  },
+  "hiddenTogglesLabel": {
+    "message": "Toggle nascosti"
+  },
+  "noTogglesHidden": {
+    "message": "Nessun toggle è stato nascosto."
+  },
+  "settingsSaved": {
+    "message": "Impostazioni salvate."
+  },
+  "resetToggleVisibilityButton": {
+    "message": "Ripristina Visibilità"
+  },
+  "verticalMode": {
+    "message": "Modalità Verticale"
+  },
+  "hideToggleButton": {
+    "message": "💾 Salva e nascondi"
+  },
+  "hideToggleTitle": {
+    "message": "Nascondi il toggle. Puoi ripristinarne la visibilità dalle impostazioni dell'estensione."
+  },
+  "optionsTitle": {
+    "message": "Come usare Vertical Gallery for Notion",
+    "description": "The title of the options page."
+  },
+  "optionsSubtitle": {
+    "message": "Guida rapida all'utilizzo dell'estensione",
+    "description": "The subtitle on the options page."
+  },
+  "optionsStep1Title": {
+    "message": "1. Trova il controllo \"Vertical Mode\"",
+    "description": "Title for the first step in the guide."
+  },
+  "optionsStep1Desc": {
+    "message": "Una volta installata l'estensione, naviga su una pagina di Notion che contiene una galleria con immagini. Sopra la galleria, vedrai apparire un nuovo interruttore con la scritta \"Vertical Mode\".",
+    "description": "Description for the first step."
+  },
+  "optionsNote": {
+    "message": "Nota:",
+    "description": "The word 'Note:' for tips."
+  },
+  "optionsStep1Tip": {
+    "message": "Il controllo appare solo se la galleria contiene almeno un'immagine. Potrebbe essere necessario un refresh della pagina.",
+    "description": "The content of the tip for step 1."
+  },
+  "optionsStep2Title": {
+    "message": "2. Attiva la modalità e regola l'altezza",
+    "description": "Title for the second step in the guide."
+  },
+  "optionsStep2Desc1": {
+    "message": "Clicca sull'interruttore per attivare la modalità verticale. Le immagini della galleria si adatteranno per mostrarsi in tutta la loro altezza.",
+    "description": "First paragraph of the description for step 2."
+  },
+  "optionsStep2Desc2": {
+    "message": "Una volta attivata la modalità, appariranno i pulsanti + e - per permetterti di regolare finemente l'altezza delle immagini a tuo piacimento.",
+    "description": "Second paragraph of the description for step 2."
+  },
+  "optionsStep3Title": {
+    "message": "3. Nascondi il controllo (Opzionale)",
+    "description": "Title for the third step in the guide."
+  },
+  "optionsStep3Desc": {
+    "message": "Se desideri un'interfaccia più pulita, puoi nascondere il controllo \"Vertical Mode\" per una specifica galleria cliccando sul pulsante",
+    "description": "Description for the third step, part before the button name."
+  },
+  "optionsHideButtonText": {
+    "message": "Salva e nascondi",
+    "description": "The text for the 'Save and hide' button mentioned in the guide."
+  },
+  "optionsStep3TipPart1": {
+    "message": "Per ripristinare la visibilità del toggle, devi aprire il popup dell'estensione.",
+    "description": "First part of the tip for step 3."
+  },
+  "optionsStep3TipPart2": {
+    "message": "Puoi aprire il popup premendo sull'icona delle estensioni presente in alto a destra nella finestra del browser, e selezionando \"Vertical Gallery for Notion\".",
+    "description": "Second part of the tip for step 3."
+  },
+  "optionsFooter": {
+    "message": "Grazie per aver installato Vertical Gallery for Notion!",
+    "description": "The footer text on the options page."
   }
 }
