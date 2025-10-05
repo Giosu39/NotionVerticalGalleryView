@@ -16,6 +16,15 @@ chrome.runtime.onInstalled.addListener((details) => {
     ]);
   });
 
+  // --- NUOVA LOGICA ---
+  // Se l'estensione viene installata per la prima volta o aggiornata,
+  // apre la pagina delle opzioni in un nuovo tab.
+  if (details.reason === 'install' || details.reason === 'update') {
+    chrome.runtime.openOptionsPage();
+  }
+  // --- FINE NUOVA LOGICA ---
+
+
   // Controlla se l'evento è una prima installazione.
   if (details.reason === 'install') {
     // Cerca tutte le schede (tab) che sono già aperte sull'URL di Notion.
