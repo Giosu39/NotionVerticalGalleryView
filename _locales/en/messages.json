@@ -1,6 +1,6 @@
 {
   "appName": {
-    "message": "Notion Vertical Gallery - BETA",
+    "message": "Vertical Gallery for Notion - BETA",
     "description": "The name of the application"
   },
   "appDesc": {
@@ -8,7 +8,7 @@
     "description": "The description of the application"
   },
   "settingsTitle": {
-    "message": "🎨 Notion Vertical Gallery Settings"
+    "message": "🎨 Vertical Gallery for Notion Settings"
   },
   "imageHeightLabel": {
     "message": "Image Height"
