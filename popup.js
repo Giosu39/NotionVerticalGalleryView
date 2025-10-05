@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const title = hiddenToggles[id];
                 const listItem = document.createElement('li');
                 
-                // --- MODIFICA: Struttura HTML migliorata per ogni elemento della lista ---
                 listItem.innerHTML = `
                     <div class="db-info">
                         <span class="db-title" title="${title}">${title}</span>
@@ -69,18 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${showIconSVG}
                     </button>
                 `;
-                // --- FINE MODIFICA ---
                 hiddenList.appendChild(listItem);
             });
         }
     }
 
-    // --- MODIFICA: Event listener più robusto per gestire i click sulle icone ---
     hiddenList.addEventListener('click', async (e) => {
         const showButton = e.target.closest('.show-button');
         const openLink = e.target.closest('.open-db-link');
 
-        // Gestione click sul pulsante "Mostra di nuovo"
         if (showButton) {
             const dbId = showButton.dataset.dbId;
             const { hiddenToggles } = await chrome.storage.local.get('hiddenToggles');
@@ -89,19 +85,25 @@ document.addEventListener('DOMContentLoaded', () => {
             await loadHiddenList();
         }
 
-        // Gestione del click sul link "Open database page".
         if (openLink) {
-            e.preventDefault(); // Evita il comportamento di default del link
+            e.preventDefault();
             const dbId = openLink.dataset.dbId;
             if (dbId) {
-                // Gli ID dei blocchi di Notion usati nelle URL non hanno i trattini, quindi li rimuoviamo.
                 const urlDbId = dbId.replace(/-/g, '');
                 chrome.tabs.create({ url: `https://www.notion.so/${urlDbId}` });
             }
         }
     });
-    // --- FINE MODIFICA ---
 
+    // MODIFICA: Aggiunto event listener per il link al tutorial
+    const tutorialLink = document.getElementById('open-tutorial');
+    if (tutorialLink) {
+        tutorialLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Apre la pagina delle opzioni definita in manifest.json
+            chrome.runtime.openOptionsPage();
+        });
+    }
 
     // Inizializza tutto
     restore_slider();

@@ -115,19 +115,15 @@ hr {
     border-top: 1px solid var(--border-color);
 }
 
-/* --- MODIFICA: Stili completamente rinnovati per la lista --- */
-
-/* Contenitore principale della lista */
+/* Stili per la lista */
 #hidden-list {
     padding: 0;
     margin: 0;
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Spazio tra gli elementi della lista */
+    gap: 8px;
 }
-
-/* Stile per ogni elemento della lista (ogni database nascosto) */
 #hidden-list li {
     display: flex;
     justify-content: space-between;
@@ -135,25 +131,20 @@ hr {
     gap: 12px;
     background-color: var(--button-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px; /* Angoli più arrotondati */
+    border-radius: 8px;
     padding: 12px 14px;
     transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
-
 #hidden-list li:hover {
     background-color: var(--button-hover-bg);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05); /* Sottile ombra al passaggio del mouse */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
-
-/* Contenitore per le informazioni sul database (titolo e link) */
 .db-info {
     display: flex;
     flex-direction: column;
-    gap: 4px; /* Spazio tra titolo e link */
-    min-width: 0; /* Permette al testo di andare a capo correttamente */
+    gap: 4px;
+    min-width: 0;
 }
-
-/* Titolo del database */
 .db-title {
     font-size: 14px;
     font-weight: 500;
@@ -162,49 +153,40 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/* Link per aprire la pagina del database */
 .open-db-link {
     display: flex;
     align-items: center;
-    gap: 4px; /* Spazio tra testo e icona */
+    gap: 4px;
     font-size: 12px;
     font-weight: 500;
     color: var(--subtle-text);
     text-decoration: none;
 }
-
 .open-db-link:hover {
     color: var(--accent-color);
     text-decoration: underline;
 }
-
 .open-db-link svg {
     opacity: 0.8;
 }
-
-/* Pulsante per mostrare di nuovo il toggle */
 .show-button {
-    display: flex; /* Centra l'icona SVG */
+    display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
-    border: 1px solid transparent; /* Bordo trasparente per mantenere le dimensioni */
+    border: 1px solid transparent;
     border-radius: 6px;
     padding: 5px;
     cursor: pointer;
     flex-shrink: 0;
-    color: var(--subtle-text); /* Colore dell'icona */
+    color: var(--subtle-text);
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 }
-
 .show-button:hover {
     background-color: var(--button-hover-bg);
-    color: var(--text-color); /* Colore più scuro al passaggio del mouse */
+    color: var(--text-color);
     border-color: var(--border-color);
 }
-/* --- FINE MODIFICA --- */
-
 
 /* Stile personalizzato per lo slider */
 input[type="range"] {
@@ -230,4 +212,24 @@ input[type="range"]::-webkit-slider-thumb {
 }
 input[type="range"]::-webkit-slider-thumb:hover {
     transform: scale(1.1);
+}
+
+/* MODIFICA: Nuovi stili per il footer e il link al tutorial */
+footer {
+    padding-top: 12px;
+    margin-top: 12px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-link {
+    color: var(--subtle-text);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.1s ease-in-out;
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
 }
