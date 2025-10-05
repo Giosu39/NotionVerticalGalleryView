@@ -9,25 +9,24 @@
     --slider-track: rgba(55, 53, 47, 0.15);
     --slider-thumb: white;
     --accent-color: #529e72;
-    --accent-color-darker: #458a62; /* Aggiunto per l'hover */
+    --accent-color-darker: #458a62;
 }
 body {
     font-family: var(--notion-font);
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
-    width: 350px; /* Leggermente più largo per dare più respiro */
+    width: 350px;
 }
 .container {
     padding: 20px;
 }
 
-/* --- MODIFICA 1: Header con icona e titolo centrati --- */
 header {
     display: flex;
-    flex-direction: column; /* Impila gli elementi verticalmente */
-    align-items: center;    /* Centra orizzontalmente */
-    gap: 12px;              /* Spazio tra icona e titolo */
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 16px;
@@ -38,7 +37,7 @@ header {
 }
 header h2 {
     margin: 0;
-    font-size: 18px; /* Leggermente più grande */
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -70,10 +69,10 @@ label {
 button {
     background: var(--button-bg);
     border: 1px solid var(--border-color);
-    border-radius: 6px; /* Arrotondamento di base */
+    border-radius: 6px;
     padding: 6px 12px;
     font-family: inherit;
-    font-size: 13px; /* Leggermente più grande e leggibile */
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
@@ -83,20 +82,19 @@ button:hover {
     background-color: var(--button-hover-bg);
 }
 button:active {
-    transform: translateY(1px); /* Effetto pressione */
+    transform: translateY(1px);
 }
 
-/* --- MODIFICA 2: Stile migliorato per il pulsante di reset --- */
 .cta-button {
     background-color: var(--accent-color);
     color: white;
     border: none;
     display: block;
-    width: 100%; /* Occupa tutto lo spazio */
+    width: 100%;
     padding: 10px 14px;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 8px; /* Più arrotondato */
+    border-radius: 8px;
     margin-bottom: 15px;
 }
 .cta-button:hover {
@@ -116,63 +114,96 @@ hr {
     border: 0;
     border-top: 1px solid var(--border-color);
 }
+
+/* --- MODIFICA: Stili completamente rinnovati per la lista --- */
+
+/* Contenitore principale della lista */
 #hidden-list {
     padding: 0;
     margin: 0;
-    background-color: var(--button-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spazio tra gli elementi della lista */
 }
 
-/* --- MODIFICA --- */
-/* Lo stile di `li` è stato cambiato per permettere contenuti su più righe, rimuovendo flexbox. */
+/* Stile per ogni elemento della lista (ogni database nascosto) */
 #hidden-list li {
-    list-style: none;
-    padding: 10px 12px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--border-color);
-}
-/* --- FINE MODIFICA --- */
-
-#hidden-list li:last-child {
-    border-bottom: none;
-}
-#hidden-list li span {
-    color: var(--subtle-text);
-    flex-grow: 1;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-#hidden-list li button {
-    flex-shrink: 0;
-}
-
-/* --- NUOVI STILI AGGIUNTI --- */
-/* Questa classe ripristina il layout flex per la riga principale con titolo e pulsante. */
-.list-item-main-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
-    margin-bottom: 6px; /* Aggiunge spazio tra la riga principale e il link sottostante */
+    background-color: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Angoli più arrotondati */
+    padding: 12px 14px;
+    transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 
-/* Stile per il nuovo link. */
+#hidden-list li:hover {
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05); /* Sottile ombra al passaggio del mouse */
+}
+
+/* Contenitore per le informazioni sul database (titolo e link) */
+.db-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Spazio tra titolo e link */
+    min-width: 0; /* Permette al testo di andare a capo correttamente */
+}
+
+/* Titolo del database */
+.db-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Link per aprire la pagina del database */
 .open-db-link {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Spazio tra testo e icona */
     font-size: 12px;
     font-weight: 500;
-    color: var(--accent-color);
+    color: var(--subtle-text);
     text-decoration: none;
-    cursor: pointer;
 }
 
 .open-db-link:hover {
-    color: var(--text-color);
+    color: var(--accent-color);
     text-decoration: underline;
 }
-/* --- FINE NUOVI STILI --- */
+
+.open-db-link svg {
+    opacity: 0.8;
+}
+
+/* Pulsante per mostrare di nuovo il toggle */
+.show-button {
+    display: flex; /* Centra l'icona SVG */
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent; /* Bordo trasparente per mantenere le dimensioni */
+    border-radius: 6px;
+    padding: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--subtle-text); /* Colore dell'icona */
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+.show-button:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--text-color); /* Colore più scuro al passaggio del mouse */
+    border-color: var(--border-color);
+}
+/* --- FINE MODIFICA --- */
 
 
 /* Stile personalizzato per lo slider */

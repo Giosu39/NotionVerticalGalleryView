@@ -35,10 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gestione Lista Toggle Nascosti
     const hiddenList = document.getElementById('hidden-list');
     const emptyMessage = document.getElementById('empty-message');
-    const resetButtonText = chrome.i18n.getMessage('resetToggleVisibilityButton');
-    // Testo per il nuovo link. Potresti voler aggiungere la chiave 'openDatabasePageLink' ai tuoi file i18n
-    const openDbLinkText = chrome.i18n.getMessage('openDatabasePageLink') || 'Open database page';
-
+    
+    const showIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+    const openLinkIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`;
 
     async function loadHiddenList() {
         const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
@@ -50,16 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
             emptyMessage.style.display = 'block';
         } else {
             emptyMessage.style.display = 'none';
+            const resetButtonText = chrome.i18n.getMessage('resetToggleVisibilityButton');
+            const openDbLinkText = chrome.i18n.getMessage('openDatabasePageLink') || 'Open database page';
+
             dbIds.forEach(id => {
                 const title = hiddenToggles[id];
                 const listItem = document.createElement('li');
                 
+                // --- MODIFICA: Struttura HTML migliorata per ogni elemento della lista ---
                 listItem.innerHTML = `
-                    <div class="list-item-main-content">
-                        <span title="${title}">${title}</span>
-                        <button data-db-id="${id}">${resetButtonText}</button>
+                    <div class="db-info">
+                        <span class="db-title" title="${title}">${title}</span>
+                        <a href="#" class="open-db-link" data-db-id="${id}">
+                            ${openDbLinkText}
+                            ${openLinkIconSVG}
+                        </a>
                     </div>
-                    <a href="#" class="open-db-link" data-db-id="${id}">${openDbLinkText}</a>
+                    <button class="show-button" data-db-id="${id}" title="${resetButtonText}">
+                        ${showIconSVG}
+                    </button>
                 `;
                 // --- FINE MODIFICA ---
                 hiddenList.appendChild(listItem);
@@ -67,31 +75,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- MODIFICA: Event listener più robusto per gestire i click sulle icone ---
     hiddenList.addEventListener('click', async (e) => {
-        const target = e.target;
+        const showButton = e.target.closest('.show-button');
+        const openLink = e.target.closest('.open-db-link');
 
         // Gestione click sul pulsante "Mostra di nuovo"
-        if (target.tagName === 'BUTTON') {
-            const dbId = target.dataset.dbId;
+        if (showButton) {
+            const dbId = showButton.dataset.dbId;
             const { hiddenToggles } = await chrome.storage.local.get('hiddenToggles');
             delete hiddenToggles[dbId];
             await chrome.storage.local.set({ hiddenToggles });
             await loadHiddenList();
         }
 
-        // --- MODIFICA ---
         // Gestione del click sul link "Open database page".
-        if (target.tagName === 'A' && target.classList.contains('open-db-link')) {
+        if (openLink) {
             e.preventDefault(); // Evita il comportamento di default del link
-            const dbId = target.dataset.dbId;
+            const dbId = openLink.dataset.dbId;
             if (dbId) {
                 // Gli ID dei blocchi di Notion usati nelle URL non hanno i trattini, quindi li rimuoviamo.
                 const urlDbId = dbId.replace(/-/g, '');
                 chrome.tabs.create({ url: `https://www.notion.so/${urlDbId}` });
             }
         }
-        // --- FINE MODIFICA ---
     });
+    // --- FINE MODIFICA ---
+
 
     // Inizializza tutto
     restore_slider();
