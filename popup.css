@@ -123,16 +123,17 @@ hr {
     border: 1px solid var(--border-color);
     border-radius: 6px;
 }
+
+/* --- MODIFICA --- */
+/* Lo stile di `li` è stato cambiato per permettere contenuti su più righe, rimuovendo flexbox. */
 #hidden-list li {
     list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
+    padding: 10px 12px;
     font-size: 13px;
-    gap: 12px;
     border-bottom: 1px solid var(--border-color);
 }
+/* --- FINE MODIFICA --- */
+
 #hidden-list li:last-child {
     border-bottom: none;
 }
@@ -148,6 +149,32 @@ hr {
     flex-shrink: 0;
 }
 
+/* --- NUOVI STILI AGGIUNTI --- */
+/* Questa classe ripristina il layout flex per la riga principale con titolo e pulsante. */
+.list-item-main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px; /* Aggiunge spazio tra la riga principale e il link sottostante */
+}
+
+/* Stile per il nuovo link. */
+.open-db-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.open-db-link:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+/* --- FINE NUOVI STILI --- */
+
+
 /* Stile personalizzato per lo slider */
 input[type="range"] {
     -webkit-appearance: none;
@@ -161,7 +188,7 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 18px; /* Leggermente più grande */
+    width: 18px;
     height: 18px;
     background: var(--slider-thumb);
     border-radius: 50%;
