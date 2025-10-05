@@ -1,0 +1,175 @@
+:root {
+    --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+    --text-color: rgb(55, 53, 47);
+    --subtle-text: rgba(55, 53, 47, 0.7);
+    --bg-color: #F7F7F5;
+    --border-color: rgba(55, 53, 47, 0.1);
+    --button-bg: white;
+    --button-hover-bg: #EFEFEE;
+    --slider-track: rgba(55, 53, 47, 0.15);
+    --slider-thumb: white;
+    --accent-color: #529e72;
+    --accent-color-darker: #458a62; /* Aggiunto per l'hover */
+}
+body {
+    font-family: var(--notion-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    width: 350px; /* Leggermente più largo per dare più respiro */
+}
+.container {
+    padding: 20px;
+}
+
+/* --- MODIFICA 1: Header con icona e titolo centrati --- */
+header {
+    display: flex;
+    flex-direction: column; /* Impila gli elementi verticalmente */
+    align-items: center;    /* Centra orizzontalmente */
+    gap: 12px;              /* Spazio tra icona e titolo */
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 16px;
+}
+.header-icon {
+    width: 48px;
+    height: 48px;
+}
+header h2 {
+    margin: 0;
+    font-size: 18px; /* Leggermente più grande */
+    font-weight: 600;
+}
+
+
+.setting-group {
+    margin: 24px 0;
+}
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+#slider-value {
+    font-weight: 600;
+    font-size: 14px;
+    background-color: var(--button-hover-bg);
+    padding: 2px 8px;
+    border-radius: 5px;
+    min-width: 28px;
+    text-align: center;
+}
+button {
+    background: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px; /* Arrotondamento di base */
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 13px; /* Leggermente più grande e leggibile */
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    white-space: nowrap;
+}
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+button:active {
+    transform: translateY(1px); /* Effetto pressione */
+}
+
+/* --- MODIFICA 2: Stile migliorato per il pulsante di reset --- */
+.cta-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    display: block;
+    width: 100%; /* Occupa tutto lo spazio */
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px; /* Più arrotondato */
+    margin-bottom: 15px;
+}
+.cta-button:hover {
+    background-color: var(--accent-color-darker);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#status {
+    font-size: 12px;
+    color: var(--accent-color);
+    height: 1em;
+    margin-top: 8px;
+    font-style: italic;
+    text-align: center;
+}
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+}
+#hidden-list {
+    padding: 0;
+    margin: 0;
+    background-color: var(--button-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+#hidden-list li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 13px;
+    gap: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+#hidden-list li:last-child {
+    border-bottom: none;
+}
+#hidden-list li span {
+    color: var(--subtle-text);
+    flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#hidden-list li button {
+    flex-shrink: 0;
+}
+
+/* Stile personalizzato per lo slider */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--slider-track);
+    border-radius: 3px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px; /* Leggermente più grande */
+    height: 18px;
+    background: var(--slider-thumb);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(55, 53, 47, 0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease-in-out;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}

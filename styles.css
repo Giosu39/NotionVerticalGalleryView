@@ -1,6 +1,7 @@
 /* styles.css */
 
 /* Applica la modalità verticale SOLO se il contenitore ha la classe .vertical-mode-enabled */
+/* La variabile --vertical-gallery-height viene ora impostata via JS per ogni singola galleria */
 .notion-gallery-view.vertical-mode-enabled .notion-collection-item a > div:first-child > div:first-child > div:first-child {
   height: var(--vertical-gallery-height, 280px) !important;
 }
@@ -12,12 +13,11 @@
 
 
 /* --- Stili STRUTTURALI per l'interruttore (Toggle Switch) --- */
-/* Questi stili non cambiano tra i temi */
 .vertical-mode-toggle {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin: 8px 4px 12px;
+  margin: 8px 0 12px; /* Rimosso margin laterale, gestito dal wrapper */
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
@@ -57,37 +57,18 @@
   background-color: white;
   transition: .4s;
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Aggiunge una leggera ombra alla manopola */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
-
 
 /* --- Stili per i COLORI (specifici per tema) --- */
-
-/* Colori per TEMA SCURO (Dark Theme) */
-.notion-dark-theme .vertical-mode-toggle {
-  color: rgba(255, 255, 255, 0.7);
-}
-.notion-dark-theme .vertical-mode-toggle .slider {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Colori per TEMA CHIARO (Light Theme) */
-.notion-light-theme .vertical-mode-toggle {
-  color: rgba(55, 53, 47, 0.7);
-}
-.notion-light-theme .vertical-mode-toggle .slider {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
+.notion-dark-theme .vertical-mode-toggle { color: rgba(255, 255, 255, 0.7); }
+.notion-dark-theme .vertical-mode-toggle .slider { background-color: rgba(255, 255, 255, 0.2); }
+.notion-light-theme .vertical-mode-toggle { color: rgba(55, 53, 47, 0.7); }
+.notion-light-theme .vertical-mode-toggle .slider { background-color: rgba(0, 0, 0, 0.15); }
 
 /* --- Stili CONDIVISI per lo slider --- */
-/* Il colore verde quando attivo e il movimento vanno bene per entrambi i temi */
-.vertical-mode-toggle input:checked + .slider {
-  background-color: #529e72;
-}
-.vertical-mode-toggle input:checked + .slider:before {
-  transform: translateX(14px);
-}
+.vertical-mode-toggle input:checked + .slider { background-color: #529e72; }
+.vertical-mode-toggle input:checked + .slider:before { transform: translateX(14px); }
 
 /* Stile per il pulsante "nascondi" */
 .hide-toggle-btn {
@@ -106,23 +87,66 @@
   opacity: 0.8;
   background-color: rgba(128, 128, 128, 0.2);
 }
-/* --- Stili STRUTTURALI per l'interruttore (Toggle Switch) --- */
-/* Questi stili non cambiano tra i temi */
-.vertical-mode-toggle {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin: 8px 4px 12px;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
-  font-weight: 500;
-  
-  /* --- MODIFICHE QUI --- */
-  justify-content: flex-start; /* Allinea gli elementi all'inizio */
-  gap: 3px; /* Spazio tra gli elementi */
-  /* --- FINE MODIFICHE --- */
+
+/* --- NUOVI STILI PER I CONTROLLI DELL'ALTEZZA --- */
+
+.vertical-gallery-controls-wrapper {
+  padding: 0 4px; /* Allinea i controlli con il contenuto della galleria */
 }
 
-.vertical-mode-toggle .toggle-text {
-  flex-shrink: 0; /* Impedisce al testo di rimpicciolirsi */
+.height-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: -4px; /* Avvicina i controlli al toggle */
+  margin-bottom: 12px;
+  margin-left: 2px; /* Allineamento di precisione */
+}
+
+.height-btn {
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.1s ease-in-out;
+  flex-shrink: 0;
+}
+
+.height-display {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica;
+  font-size: 13px;
+  font-weight: 500;
+  min-width: 40px; /* Evita che il layout si sposti cambiando valore */
+  text-align: center;
+}
+
+/* Colori specifici per tema per i nuovi controlli */
+
+.notion-light-theme .height-btn {
+  color: rgb(55, 53, 47);
+  border-color: rgba(55, 53, 47, 0.15);
+}
+.notion-light-theme .height-btn:hover {
+  background-color: rgba(55, 53, 47, 0.08);
+}
+.notion-light-theme .height-display {
+  color: rgba(55, 53, 47, 0.7);
+}
+
+.notion-dark-theme .height-btn {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+.notion-dark-theme .height-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.notion-dark-theme .height-display {
+  color: rgba(255, 255, 255, 0.7);
 }

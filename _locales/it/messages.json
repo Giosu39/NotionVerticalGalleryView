@@ -2,39 +2,5 @@
   "appName": {
     "message": "Vertical Gallery for Notion - BETA",
     "description": "Il nome dell'applicazione"
-  },
-  "appDesc": {
-    "message": "THIS EXTENSION IS FOR BETA TESTING.",
-    "description": "La descrizione dell'applicazione"
-  },
-  "settingsTitle": {
-    "message": "🎨 Impostazioni di Vertical Gallery for Notion"
-  },
-  "imageHeightLabel": {
-    "message": "Altezza immagine"
-  },
-  "resetHeightButton": {
-    "message": "Ripristina altezza predefinita"
-  },
-  "hiddenTogglesLabel": {
-    "message": "Toggle nascosti"
-  },
-  "noTogglesHidden": {
-    "message": "Nessun toggle è stato nascosto."
-  },
-  "settingsSaved": {
-    "message": "Impostazioni salvate."
-  },
-  "resetToggleVisibilityButton": {
-    "message": "Ripristina Visibilità"
-  },
-  "verticalMode": {
-    "message": "Modalità Verticale"
-  },
-  "hideToggleButton": {
-    "message": "💾 Salva e nascondi"
-  },
-  "hideToggleTitle": {
-    "message": "Nascondi il toggle. Puoi ripristinarne la visibilità dalle impostazioni dell'estensione."
   }
 }

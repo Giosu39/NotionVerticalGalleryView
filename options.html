@@ -1,35 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Vertical Gallery for Notion Settings</title>
-    <link rel="stylesheet" href="options.css"> </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come usare Vertical Gallery for Notion</title>
+    <link rel="stylesheet" href="options.css">
+</head>
 <body>
     <div class="container">
         <header>
-            <h2 data-i18n="settingsTitle"></h2>
+            <img src="images/icon.png" alt="Extension Icon" class="header-icon">
+            <h1>Vertical Gallery for Notion</h1>
+            <p class="subtitle">Guida rapida all'utilizzo dell'estensione</p>
         </header>
 
         <main>
-            <div class="setting-group">
-                <label for="height-slider" data-i18n="imageHeightLabel"></label>
-                <div class="slider-wrapper">
-                    <input id="height-slider" type="range" min="150" max="500" step="10">
-                    <span id="slider-value"></span>px
+            <section class="step">
+                <div class="step-text">
+                    <h2>1. Trova il controllo "Vertical Mode"</h2>
+                    <p>
+                        Una volta installata l'estensione, naviga su una pagina di Notion che contiene una galleria con immagini. Sopra la galleria, vedrai apparire un nuovo interruttore con la scritta "Vertical Mode".
+                    </p>
+                    <p class="tip">
+                        <strong>Nota:</strong> Il controllo appare solo se la galleria contiene almeno un'immagine. Potrebbe essere necessario un refresh della pagina.
+                    </p>
                 </div>
-                <div id="status"></div>
-            </div>
-            <button id="reset" data-i18n="resetHeightButton"></button>
+                <div class="step-image-placeholder">
+                    <img src="images/tutorial-step-1-image.jpg">
+                </div>
+            </section>
 
-            <hr>
+            <section class="step reverse">
+                <div class="step-text">
+                    <h2>2. Attiva la modalità e regola l'altezza</h2>
+                    <p>
+                        Clicca sull'interruttore per attivare la modalità verticale. Le immagini della galleria si adatteranno per mostrarsi in tutta la loro altezza.
+                    </p>
+                    <p>
+                        Una volta attivata la modalità, appariranno i pulsanti <strong>+</strong> e <strong>-</strong> per permetterti di regolare finemente l'altezza delle immagini a tuo piacimento.
+                    </p>
+                </div>
+                <div class="step-image-placeholder">
+                    <img src="images/tutorial-step-2-image.png">                </div>
+            </section>
 
-            <div class="setting-group">
-                <label data-i18n="hiddenTogglesLabel"></label>
-                <ul id="hidden-list"></ul>
-                <p id="empty-message" style="display: none;" data-i18n="noTogglesHidden"></p>
-            </div>
+            <section class="step">
+                <div class="step-text">
+                    <h2>3. Nascondi il controllo (Opzionale)</h2>
+                    <p>
+                        Se desideri un'interfaccia più pulita, puoi nascondere il controllo "Vertical Mode" per una specifica galleria cliccando sul pulsante <strong>Salva e nascondi</strong>.
+                    </p>
+                    <p class="tip">
+                        <strong>Nota:</strong> Per ripristinare la visibilità del toggle, devi aprire il popup dell'estensione.<br>Puoi aprire il popup premendo sull'icona delle estensioni presente in alto a destra nella finestra del browser, e selezionando "Vertical Gallery for Notion".
+                    </p>
+                </div>
+                 <div class="step-image-placeholder">
+                    <img src="images/tutorial-step-3-image.jpg">
+                </div>
+            </section>
+
         </main>
+
+        <footer>
+            <p>Grazie per aver installato Vertical Gallery for Notion!</p>
+        </footer>
     </div>
-    <script src="i18n.js"></script> <script src="options.js"></script>
+    <!-- Potresti voler includere i18n.js se aggiungerai testi multilingua anche qui -->
+    <!-- <script src="i18n.js"></script> -->
 </body>
 </html>

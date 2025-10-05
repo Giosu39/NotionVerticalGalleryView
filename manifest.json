@@ -18,8 +18,8 @@
       "32": "images/icon32.png",
       "48": "images/icon48.png"
     },
-    "default_title": "Vertical Gallery Options",
-    "default_popup": "options.html"
+    "default_title": "Vertical Gallery Settings",
+    "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"
@@ -42,5 +42,9 @@
     "32": "images/icon32.png",
     "48": "images/icon48.png",
     "128": "images/icon128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   }
 }

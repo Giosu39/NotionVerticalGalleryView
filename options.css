@@ -1,131 +1,141 @@
-        :root {
-            --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
-            --text-color: rgb(55, 53, 47);
-            --subtle-text: rgba(55, 53, 47, 0.7);
-            --bg-color: #F7F7F5;
-            --border-color: rgba(55, 53, 47, 0.1);
-            --button-bg: white;
-            --button-hover-bg: #EFEFEE;
-            /* --- MODIFICA 1: Slider più visibile --- */
-            --slider-track: rgba(55, 53, 47, 0.15); 
-            --slider-thumb: white;
-            --accent-color: #529e72;
-        }
-        body {
-            font-family: var(--notion-font);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            width: 320px;
-        }
-        .container {
-            padding: 16px;
-        }
-        header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        header h2 {
-            margin: 0;
-            font-size: 16px;
-        }
-        .setting-group {
-            margin: 20px 0;
-        }
-        label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-        .slider-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        #slider-value {
-            font-weight: 600;
-            font-size: 14px;
-        }
-        button {
-            background: var(--button-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 6px 12px;
-            font-family: inherit;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.1s ease-in-out;
-            white-space: nowrap;
-        }
-        button:hover {
-            background-color: var(--button-hover-bg);
-        }
-        #status {
-            font-size: 12px;
-            color: var(--accent-color);
-            height: 1em;
-            margin-top: 8px;
-            font-style: italic;
-        }
-        hr {
-            border: 0;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        /* --- MODIFICA 2: Layout robusto per la lista --- */
-        #hidden-list {
-            padding: 0;
-            margin: 0;
-        }
-        #hidden-list li {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 4px;
-            font-size: 13px;
-            gap: 12px; /* Aggiunge spazio tra testo e pulsante */
-            border-bottom: 1px solid var(--border-color);
-        }
-        #hidden-list li:last-child {
-            border-bottom: none;
-        }
-        #hidden-list li span {
-            color: var(--subtle-text);
-            /* Regole per far adattare il testo allo spazio */
-            flex-grow: 1;
-            min-width: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        #hidden-list li button {
-            flex-shrink: 0; /* Impedisce al pulsante di rimpicciolirsi */
-        }
+/* options.css */
+/* Importazione delle variabili e stili base dal popup per coerenza */
+:root {
+    --notion-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif;
+    --text-color: rgb(55, 53, 47);
+    --subtle-text: rgba(55, 53, 47, 0.7);
+    --bg-color: #F7F7F5;
+    --border-color: rgba(55, 53, 47, 0.1);
+    --card-bg-color: #FFFFFF;
+    --accent-color: #529e72;
+}
 
-        /* Stile personalizzato per lo slider */
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 6px;
-            background: var(--slider-track);
-            border-radius: 3px;
-            outline: none;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            background: var(--slider-thumb);
-            border-radius: 50%;
-            cursor: pointer;
-            border: 1px solid rgba(55, 53, 47, 0.2); /* Bordo più marcato */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+body {
+    font-family: var(--notion-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.header-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+header .subtitle {
+    font-size: 16px;
+    color: var(--subtle-text);
+    margin-top: 8px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.step {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.step.reverse {
+    flex-direction: row-reverse;
+}
+
+.step-text {
+    flex: 1;
+}
+
+.step-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.step-text p {
+    margin-bottom: 1em;
+    color: var(--subtle-text);
+}
+.step-text p:last-child {
+    margin-bottom: 0;
+}
+
+.step-text .tip {
+    font-size: 14px;
+    padding: 12px;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    color: var(--text-color);
+}
+
+
+.step-image-placeholder {
+    flex: 1;
+    background-color: #F1F1EF;
+    /* Rimuovo il bordo tratteggiato e il testo segnaposto */
+    border-radius: 6px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Rimuovo il padding per far occupare tutto lo spazio all'immagine */
+    overflow: hidden; /* Nasconde le parti dell'immagine che potrebbero eccedere i bordi arrotondati */
+    box-shadow: 0 4px 8px 0 #c2dacc, 0 6px 20px 0 #a0d4b6;
+}
+
+/* Nuove regole per l'immagine */
+.step-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fa sì che l'immagine copra l'intera area, ritagliando l'eccesso senza deformarla */
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 14px;
+    color: var(--subtle-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .step, .step.reverse {
+        flex-direction: column;
+        padding: 24px;
+    }
+    .step-image-placeholder {
+        width: 100%;
+        height: 200px;
+    }
+}
+

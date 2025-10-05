@@ -8,13 +8,13 @@
     "description": "The description of the application"
   },
   "settingsTitle": {
-    "message": "🎨 Vertical Gallery for Notion Settings"
+    "message": "Vertical Gallery for Notion"
   },
   "imageHeightLabel": {
-    "message": "Image Height"
+    "message": "Default image height"
   },
   "resetHeightButton": {
-    "message": "Reset Height"
+    "message": "Reset default height"
   },
   "hiddenTogglesLabel": {
     "message": "Hidden Toggles"
