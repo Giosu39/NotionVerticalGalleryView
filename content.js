@@ -189,8 +189,7 @@ async function processGallery(gallery) {
     hideButton.addEventListener('click', async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const header = gallery.closest('.notion-page-content')?.querySelector('.notion-header-block [contenteditable="true"]');
-        const dbTitle = header ? header.textContent : `Database ID: (${dbId.substring(0, 6)}...)`;
+        const dbTitle = `Database ID: (${dbId.substring(0, 6)}...)`;
         const { hiddenToggles = {} } = await chrome.storage.local.get('hiddenToggles');
         hiddenToggles[dbId] = dbTitle;
         await chrome.storage.local.set({ hiddenToggles });

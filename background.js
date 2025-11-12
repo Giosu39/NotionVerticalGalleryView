@@ -17,9 +17,9 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 
   // --- NUOVA LOGICA ---
-  // Se l'estensione viene installata per la prima volta o aggiornata,
+  // Se l'estensione viene installata per la prima volta,
   // apre la pagina delle opzioni in un nuovo tab.
-  if (details.reason === 'install' || details.reason === 'update') {
+  if (details.reason === 'install') {
     chrome.runtime.openOptionsPage();
   }
   // --- FINE NUOVA LOGICA ---

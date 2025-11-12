@@ -1,10 +1,10 @@
 {
   "appName": {
-    "message": "Vertical Gallery for Notion - BETA",
+    "message": "Vertical Gallery for Notion",
     "description": "Il nome dell'applicazione"
   },
   "appDesc": {
-    "message": "Un tool esterno che rende possibile mostrare le immagini in verticale nelle \"Gallery View\" di Notion. THIS EXTENSION IS FOR BETA TESTING.",
+    "message": "Un tool esterno che rende possibile mostrare le immagini in verticale nelle \"Gallery View\" di Notion.",
     "description": "La descrizione dell'applicazione"
   },
   "settingsTitle": {
