@@ -10,7 +10,8 @@
     "scripting"
   ],
   "host_permissions": [
-    "*://*.notion.so/*"
+    "*://*.notion.so/*",
+    "*://app.notion.com/*"
   ],
   "action": {
     "default_icon": {
@@ -27,7 +28,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.notion.so/*"
+        "*://*.notion.so/*",
+        "*://app.notion.com/*"
       ],
       "css": [
         "styles.css"

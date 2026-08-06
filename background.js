@@ -10,6 +10,9 @@ chrome.runtime.onInstalled.addListener((details) => {
           new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostSuffix: 'notion.so' },
           }),
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { hostEquals: 'app.notion.com' },
+          })
         ],
         actions: [new chrome.declarativeContent.ShowAction()],
       },
@@ -28,7 +31,7 @@ chrome.runtime.onInstalled.addListener((details) => {
   // Controlla se l'evento è una prima installazione.
   if (details.reason === 'install') {
     // Cerca tutte le schede (tab) che sono già aperte sull'URL di Notion.
-    chrome.tabs.query({ url: "*://*.notion.so/*" }, (tabs) => {
+    chrome.tabs.query({ url: ["*://*.notion.so/*", "*://app.notion.com/*"] }, (tabs) => {
       // Per ogni scheda di Notion trovata...
       for (const tab of tabs) {
         // ...inietta programmaticamente i content script.
